@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
-import useDropdown from "./usedDropdown";
+import useDropdown from "./usedDropdown"; // This is an example of react hook
 
-console.log(pet)
+// console.log(pet)
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
-  const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS)
-  const [breed, BreedDropdown] = useDropdown('Breed', '', ANIMALS)
-  
+
   const [breeds, setBreeds] = useState([]);
 
+  const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS)
+
+  const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds)
+  
+
   useEffect(()=>{
-    pet.breeds('dog').then(console.log, console.error)
-  }) 
+    setBreeds([]),
+    setBreed('')
+    pet.breeds(animal).then(resp => {
+      const arrayBreed = resp.breeds.map(resp => (resp.name))
+      setBreeds(arrayBreed)
+      
+    })
+  }, [animal, setBreeds ]) 
 
 
   return (

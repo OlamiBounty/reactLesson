@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./usedDropdown"; // This is an example of react hook
-
+import Results from './Results'
 // console.log(pet)
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
-
   const [breeds, setBreeds] = useState([]);
+  const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
+  const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+  const [pets, setPets] = useState([]);
 
-  const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS)
+  async function submitData() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal,
+    });
 
-  const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds)
-  
+    setPets(animals || []);
+  }
 
-  useEffect(()=>{
-    setBreeds([]),
-    setBreed('')
-    pet.breeds(animal).then(resp => {
-      const arrayBreed = resp.breeds.map(resp => (resp.name))
-      setBreeds(arrayBreed)
-      
-    })
-  }, [animal, setBreeds ]) 
-
+  useEffect(() => {
+    setBreeds([]), setBreed("");
+    pet.breeds(animal).then((resp) => {
+      const arrayBreed = resp.breeds.map((resp) => resp.name);
+      setBreeds(arrayBreed);
+    });
+  }, [animal, setBreeds]);
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitData();
+        }}
+      >
         <label htmlFor="Location">
           Location
           <input
@@ -42,6 +51,7 @@ const SearchParams = () => {
         <BreedDropdown />
         <button>Submit</button>
       </form>
+      <Results pets={pets} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @frontendmasters/pet
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add reac
 
 PATH: 
   C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Users\Scelloo\Documents\Personal\ReactTutorial\node_modules\.bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Scelloo\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Amazon\AWSCLI\bin;C:\Program Files\MongoDB\Server\4.0\bin;C:\Program Files\nodejs;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Users\Scelloo\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\Scelloo\AppData\Local\Programs\Python\Python37;C:\Users\Scelloo\AppData\Local\Microsoft\WindowsApps;C:\Users\Scelloo\AppData\Local\Yarn\bin;C:\Program Files\JetBrains\DataGrip 2018.3.3\bin;C:\Users\Scelloo\AppData\Local\Programs\Microsoft VS Code Insiders\bin;C:\Users\Scelloo\AppData\Roaming\npm
@@ -45,7 +45,11 @@ npm manifest:
     "dependencies": {
       "react": "^16.13.1",
       "react-dom": "^16.13.1"
-    }
+    },
+  
+    "browserslist": [
+      "last 2 Chrome versions"
+    ]
   }
 
 yarn manifest: 
